@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { LoginForm } from "@/components/forms/login-form"
 import cover from "/sossusvlei.webp"
 
 export const Route = createFileRoute("/")({
@@ -26,7 +27,9 @@ function Index() {
           <CardHeader>
             <CardTitle className="text-xl text-center">Record Bag</CardTitle>
           </CardHeader>
-          <CardContent>{/* Login Form */}</CardContent>
+          <CardContent className="h-full flex flex-col items-center justify-center -mt-4">
+            <LoginForm />
+          </CardContent>
         </Card>
       </div>
     </>
