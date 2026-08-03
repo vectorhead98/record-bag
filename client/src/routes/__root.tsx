@@ -1,6 +1,6 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router"
 import { queryOptions } from "@tanstack/react-query"
-import { authMeQueryKey, handleAuthMe } from "@/api/auth-api"
+import { authMeQueryKey, handleAuthMe } from "@/api/auth"
 import type { RouterContext } from "@/lib/config"
 
 export const Route = createRootRouteWithContext<RouterContext>()({

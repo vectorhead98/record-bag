@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
-import cover from "/sossusvlei.webp"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import cover from "/sossusvlei.webp"
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
