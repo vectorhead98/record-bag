@@ -18,6 +18,11 @@ build
 !.env.example
 *.local
 
+# db
+db.sqlite
+db.sqlite-shm
+db.sqlite-wal
+
 # logs
 logs
 *.log
