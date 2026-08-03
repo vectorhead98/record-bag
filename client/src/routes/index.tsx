@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LoginForm } from "@/components/forms/login-form"
-import cover from "/sossusvlei.webp"
+import cover from "/Sossusvlei_4.webp"
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
@@ -23,7 +23,7 @@ function Index() {
         />
       </div>
       <div className="h-screen flex flex-col items-center justify-center">
-        <Card className="h-96 w-80 z-10 bg-background/80 dark:bg-background/70">
+        <Card className="h-96 w-80 z-10 bg-background/70">
           <CardHeader>
             <CardTitle className="text-xl text-center">Record Bag</CardTitle>
           </CardHeader>

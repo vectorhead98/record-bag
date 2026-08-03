@@ -5,9 +5,7 @@ export const authMeQueryKey = ["auth", "me"] as const
 
 export type AuthApiResponse = User | null
 
-export async function parseAuthApiResponse(
-  res: Response
-): Promise<AuthApiResponse> {
+async function parseAuthApiResponse(res: Response): Promise<AuthApiResponse> {
   if (!res.ok) {
     if (res.status >= 500) {
       throw new Error(`server error ${res.status}`)
@@ -19,11 +17,9 @@ export async function parseAuthApiResponse(
 }
 
 export async function handleAuthMe(): Promise<AuthApiResponse> {
-  const res = await client.auth.me.$get()
-  return parseAuthApiResponse(res)
+  return parseAuthApiResponse(await client.auth.me.$get())
 }
 
 export async function handleAuthLogin(data: Login): Promise<AuthApiResponse> {
-  const res = await client.auth.login.$post({ json: data })
-  return parseAuthApiResponse(res)
+  return parseAuthApiResponse(await client.auth.login.$post({ json: data }))
 }
