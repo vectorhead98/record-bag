@@ -23,3 +23,10 @@ export async function handleAuthMe(): Promise<AuthApiResponse> {
 export async function handleAuthLogin(data: Login): Promise<AuthApiResponse> {
   return parseAuthApiResponse(await client.auth.login.$post({ json: data }))
 }
+
+export async function handleAuthLogout(): Promise<void> {
+  const res = await client.auth.logout.$post()
+  if (!res.ok) {
+    throw new Error(`logout error ${res.status}`)
+  }
+}
