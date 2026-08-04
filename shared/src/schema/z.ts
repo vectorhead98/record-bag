@@ -10,7 +10,3 @@ export const zNotEmpty = z.string().min(1)
 export const zPosInt = z.number().int().positive()
 
 export const countrySchema = z.enum(COUNTRY_CODES)
-
-export const countryInsertSchema = z
-  .union([z.literal(""), z.null(), z.undefined(), countrySchema])
-  .transform((val) => (!val ? "NN" : val))

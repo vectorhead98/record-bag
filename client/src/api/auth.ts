@@ -1,9 +1,9 @@
-import { client } from "./client"
 import type { Login, User } from "@record-bag/shared"
+import { client } from "./client"
 
-export const authMeQueryKey = ["auth", "me"] as const
+export const authQueryKey = ["auth", "me"] as const
 
-export type AuthApiResponse = User | null
+type AuthApiResponse = User | null
 
 async function parseAuthApiResponse(res: Response): Promise<AuthApiResponse> {
   if (!res.ok) {

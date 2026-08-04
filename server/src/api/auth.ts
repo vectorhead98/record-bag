@@ -3,9 +3,9 @@ import { Hono } from "hono"
 import { deleteCookie, getCookie, setCookie } from "hono/cookie"
 import { HTTPException } from "hono/http-exception"
 import {
-  MAX_AGE,
   loginSchema,
   unixPlus,
+  MAX_AGE,
   type User,
   type UserRow,
 } from "@record-bag/shared"

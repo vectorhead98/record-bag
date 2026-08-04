@@ -5,15 +5,17 @@ import { Input } from "../ui/input"
 export function TextField({
   label,
   placeholder,
+  orientation = "vertical",
   type = "text",
 }: {
   label: string
   placeholder?: string
+  orientation?: "vertical" | "horizontal" | "responsive"
   type?: "text" | "password"
 }) {
   const field = useFieldContext<string>()
   return (
-    <Field>
+    <Field orientation={orientation}>
       <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
       <Input
         id={field.name}

@@ -1,22 +1,6 @@
-import {
-  Disc3Icon,
-  FactoryIcon,
-  HeadphonesIcon,
-  UserIcon,
-  type LucideIcon,
-} from "lucide-react"
+import { Disc3Icon, FactoryIcon, HeadphonesIcon, UserIcon } from "lucide-react"
 
-const PATHS = ["/albums", "/artists", "/labels", "/mixes"] as const
-
-type RoutePath = (typeof PATHS)[number]
-
-export type Route = {
-  name: string
-  path: RoutePath
-  Icon: LucideIcon
-}
-
-export const appRoutes: Route[] = [
+export const MAIN_ROUTES = [
   {
     name: "Albums",
     path: "/albums",

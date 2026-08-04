@@ -1,14 +1,14 @@
 import { useRouter } from "@tanstack/react-router"
 import { useQueryClient } from "@tanstack/react-query"
-import { authMeQueryKey, handleAuthLogin } from "@/api/auth"
-import { useAppForm } from "@/hooks/use-form"
 import { loginSchema } from "@record-bag/shared"
+import { authQueryKey, handleAuthLogin } from "@/api/auth"
+import { useAppForm } from "@/hooks/use-form"
 import { FieldGroup, FieldSeparator, FieldSet } from "../ui/field"
 import { toast } from "../ui/toast"
 
 export function LoginForm() {
-  const queryClient = useQueryClient()
   const router = useRouter()
+  const queryClient = useQueryClient()
   const form = useAppForm({
     defaultValues: { username: "", password: "" },
     validators: { onSubmit: loginSchema },
@@ -16,15 +16,15 @@ export function LoginForm() {
       try {
         const user = await handleAuthLogin(value)
         if (!user) throw new Error("Invalid Credentials")
-        queryClient.setQueryData(authMeQueryKey, user)
+        formApi.setFieldValue("password", "")
+        queryClient.setQueryData(authQueryKey, user)
         await router.invalidate()
-        formApi.reset()
       } catch (err) {
         toast.add({
           type: "error",
           description: err instanceof Error ? err.message : "Login failed",
         })
-        formApi.reset()
+        formApi.setFieldValue("password", "")
       }
     },
   })
@@ -46,7 +46,7 @@ export function LoginForm() {
           </form.AppField>
           <FieldSeparator />
           <form.AppForm>
-            <form.SubmitFormButton />
+            <form.SubmitFormButton labels={["Login", "..."]} />
           </form.AppForm>
         </FieldGroup>
       </FieldSet>

@@ -1,4 +1,3 @@
-import { appRoutes } from "@/lib/routes"
 import {
   Sidebar,
   SidebarContent,
@@ -6,18 +5,18 @@ import {
   SidebarHeader,
 } from "../ui/sidebar"
 import { SidebarMain } from "./sidebar-main"
-import { SidebarBrand } from "./sidebar-brand"
+import { SidebarUser } from "./sidebar-user"
 
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <SidebarBrand />
+        <SidebarUser />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMain routes={appRoutes} />
+        <SidebarMain />
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+      <SidebarFooter>{/* ??? */}</SidebarFooter>
     </Sidebar>
   )
 }

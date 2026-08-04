@@ -1,6 +1,6 @@
 import { useRouteContext, useRouter } from "@tanstack/react-router"
 import { useQueryClient } from "@tanstack/react-query"
-import { authMeQueryKey, handleAuthLogout } from "@/api/auth"
+import { authQueryKey, handleAuthLogout } from "@/api/auth"
 import { lookUpCountry } from "@/lib/countries"
 import {
   DropdownMenu,
@@ -9,17 +9,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { Item, ItemContent, ItemDescription, ItemTitle } from "../ui/item"
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar"
+import { Separator } from "../ui/separator"
+import {
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "../ui/sidebar"
 import { toast } from "../ui/toast"
+import { ItemWrapper } from "../ui"
 import { AudioWaveformIcon } from "lucide-react"
 
-export function SidebarBrand() {
-  const { user } = useRouteContext({ from: "/_auth" })
-  const { username, flag } = {
-    username: user?.username ?? "guest",
-    flag: lookUpCountry(user?.country ?? "NN").flag,
-  }
+export function SidebarUser() {
+  const { open } = useSidebar()
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -32,18 +34,13 @@ export function SidebarBrand() {
               <span className="text-base">Record Bag</span>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="min-w-60">
+          <DropdownMenuContent
+            side={!open ? "right" : "bottom"}
+            className="min-w-48"
+          >
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Item size="xs">
-                  <ItemContent>
-                    <ItemTitle>User</ItemTitle>
-                    <ItemDescription>
-                      <span>{`${flag} ${username}`}</span>
-                    </ItemDescription>
-                  </ItemContent>
-                </Item>
-              </DropdownMenuItem>
+              <UserItem />
+              <Separator className="my-1" />
               <LogoutItem />
             </DropdownMenuGroup>
           </DropdownMenuContent>
@@ -62,7 +59,7 @@ function LogoutItem() {
       onClick={async () => {
         try {
           await handleAuthLogout()
-          queryClient.setQueryData(authMeQueryKey, null)
+          queryClient.setQueryData(authQueryKey, null)
           await router.invalidate()
         } catch (err) {
           toast.add({
@@ -72,11 +69,20 @@ function LogoutItem() {
         }
       }}
     >
-      <Item size="xs">
-        <ItemContent>
-          <ItemTitle>Logout</ItemTitle>
-        </ItemContent>
-      </Item>
+      <ItemWrapper size="xs" title="Logout" />
+    </DropdownMenuItem>
+  )
+}
+
+function UserItem() {
+  const { user } = useRouteContext({ from: "/_auth" })
+  const { username, flag } = {
+    username: user?.username ?? "guest",
+    flag: lookUpCountry(user?.country ?? "NN").flag,
+  }
+  return (
+    <DropdownMenuItem>
+      <ItemWrapper size="xs" title="User" description={`${flag} ${username}`} />
     </DropdownMenuItem>
   )
 }

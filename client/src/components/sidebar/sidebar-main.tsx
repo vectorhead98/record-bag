@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import type { Route } from "@/lib/routes"
+import { MAIN_ROUTES } from "@/lib/routes"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -8,12 +8,12 @@ import {
   SidebarMenuItem,
 } from "../ui/sidebar"
 
-export function SidebarMain({ routes }: { routes: Route[] }) {
+export function SidebarMain() {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Routes</SidebarGroupLabel>
+      <SidebarGroupLabel>Collection</SidebarGroupLabel>
       <SidebarMenu>
-        {routes.map(({ name, path, Icon }) => (
+        {MAIN_ROUTES.map(({ name, path, Icon }) => (
           <SidebarMenuItem key={path}>
             <Link to={path}>
               <SidebarMenuButton>

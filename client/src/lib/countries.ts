@@ -1,6 +1,6 @@
 import type { CountryCode } from "@record-bag/shared"
 
-export const countries = [
+const countries = [
   {
     alpha_2: "AF",
     flag: "🇦🇫",
@@ -1253,7 +1253,7 @@ export const countries = [
   },
 ] as const
 
-export type Country = (typeof countries)[number]
+type Country = (typeof countries)[number]
 
 const countryByCode: Record<CountryCode, Country> = Object.fromEntries(
   countries.map((c) => [c.alpha_2, c])

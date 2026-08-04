@@ -22,12 +22,12 @@ function Index() {
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="h-screen flex flex-col items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <Card className="h-96 w-80 z-10 bg-background/70">
           <CardHeader>
             <CardTitle className="text-xl text-center">Record Bag</CardTitle>
           </CardHeader>
-          <CardContent className="h-full flex flex-col items-center justify-center -mt-4">
+          <CardContent className="h-full flex items-center justify-center -mt-6">
             <LoginForm />
           </CardContent>
         </Card>
